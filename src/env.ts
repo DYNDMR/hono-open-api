@@ -1,6 +1,8 @@
+import type { ZodError } from "zod";
+
 import { config } from "dotenv";
 import { expand } from "dotenv-expand";
-import { z, ZodError } from "zod";
+import { z } from "zod";
 
 expand(config());
 
