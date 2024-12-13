@@ -10,7 +10,7 @@ expand(config());
 const EnvSchema = z.object({
   NODE_ENV: z.string().default("development"),
   PORT: z.coerce.number().default(9999),
-  LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace"]),
+  LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"]),
   DATABASE_URL: z.string().url(),
   DATABASE_AUTH_TOKEN: z.string().optional(),
 }).superRefine((input, ctx) => {
@@ -24,6 +24,7 @@ const EnvSchema = z.object({
     });
   }
 });
+
 export type env = z.infer<typeof EnvSchema>;
 
 // eslint-disable-next-line import/no-mutable-exports, ts/no-redeclare
