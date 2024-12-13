@@ -1,11 +1,15 @@
-import type { ZodError } from "zod";
-
+/* eslint-disable node/no-process-env */
 import { config } from "dotenv";
 import { expand } from "dotenv-expand";
+import path from "node:path";
 import { z } from "zod";
 
-expand(config());
-
+expand(config({
+  path: path.resolve(
+    process.cwd(),
+    process.env.NODE_ENV === "test" ? ".env.test" : ".env",
+  ),
+}));
 
 const EnvSchema = z.object({
   NODE_ENV: z.string().default("development"),
@@ -27,18 +31,13 @@ const EnvSchema = z.object({
 
 export type env = z.infer<typeof EnvSchema>;
 
-// eslint-disable-next-line import/no-mutable-exports, ts/no-redeclare
-let env: env;
+// eslint-disable-next-line ts/no-redeclare
+const { data: env, error } = EnvSchema.safeParse(process.env);
 
-try {
-  // eslint-disable-next-line node/no-process-env
-  env = EnvSchema.parse(process.env);
-}
-catch (e) {
-  const error = e as ZodError;
-  console.error("invalid env:");
-  console.error(error.flatten().fieldErrors);
+if (error) {
+  console.error("Invalid env:");
+  console.error(JSON.stringify(error.flatten().fieldErrors, null, 2));
   process.exit(1);
 }
 
-export default env;
+export default env!;
