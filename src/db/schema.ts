@@ -1,7 +1,6 @@
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
-
 export const tasks = sqliteTable("tasks", {
   id: integer("id", { mode: "number" })
     .primaryKey({ autoIncrement: true }),
