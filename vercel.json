@@ -1,9 +1,11 @@
 {
   "builds": [
     {
-      "src": "src/index.ts",
-      "use": "@vercel/node"
+      "src": "src/**/*",
+      "use": "@vercel/node",
+      "config": {
+        "distDir": "dist"
+      }
     }
-  ],
-  "outputDirectory": "dist"
+  ]
 }
