@@ -7,7 +7,7 @@
     "lint": "eslint .",
     "lint:fix": "npm run lint --fix",
     "test": "cross-env NODE_ENV=test vitest",
-    "build": "tsc"
+    "build": "tsc --outDir dist"
   },
   "dependencies": {
     "@asteasolutions/zod-to-openapi": "^7.3.0",
