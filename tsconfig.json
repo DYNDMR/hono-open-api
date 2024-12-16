@@ -14,8 +14,10 @@
       "node"
     ],
     "strict": true,
+    "declaration": true,
+    "declarationDir": "./dist/types",
     "outDir": "./dist",
-    "skipLibCheck": true
+    "skipLibCheck": true 
   },
   "tsc-alias": {
     "resolveFullPaths": true

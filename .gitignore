@@ -28,3 +28,6 @@ lerna-debug.log*
 .DS_Store
 
 dev.db
+
+# Ignore build output
+dist/
