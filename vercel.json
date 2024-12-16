@@ -4,15 +4,5 @@
       "src": "src/index.ts",
       "use": "@vercel/node"
     }
-  ],
-  "routes": [
-    {
-      "src": "/",
-      "dest": "src/index.ts"
-    },
-    {
-      "src": "/tasks",
-      "dest": "src/tasks.ts"
-    }
   ]
 }

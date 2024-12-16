@@ -31,3 +31,4 @@ dev.db
 
 # Ignore build output
 dist/
+.vercel
