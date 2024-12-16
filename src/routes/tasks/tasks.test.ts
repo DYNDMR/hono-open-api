@@ -24,7 +24,7 @@ describe("tasks routes", () => {
   });
 
   beforeEach(async () => {
-    const task = await createTask({ name: "Dynamic Task", done: false });
+    const task = await createTask({ name: "Dynamic Task", done: 0 });
     taskId = task.id;
   });
 
@@ -43,7 +43,7 @@ describe("tasks routes", () => {
   it("post /tasks validates the body when creating", async () => {
     const response = await client.tasks.$post({
       // @ts-expect-error
-      json: { done: false },
+      json: { done: 0 },
     });
     expect(response.status).toBe(422);
     if (response.status === 422) {
@@ -56,13 +56,13 @@ describe("tasks routes", () => {
   it("post /tasks creates a task", async () => {
     const name = "Learn vitest";
     const response = await client.tasks.$post({
-      json: { name, done: false },
+      json: { name, done: 0},
     });
     expect(response.status).toBe(200);
     if (response.status === 200) {
       const json = await response.json();
       expect(json.name).toBe(name);
-      expect(json.done).toBe(false);
+      expect(json.done).toBe(0);
     }
   });
 
@@ -82,7 +82,7 @@ describe("tasks routes", () => {
     if (response.status === 200) {
       const json = await response.json();
       expect(json.name).toBe("Dynamic Task");
-      expect(json.done).toBe(false);
+      expect(json.done).toBe(0);
     }
   });
 
@@ -92,7 +92,7 @@ describe("tasks routes", () => {
   });
 });
 
-async function createTask(data: { name: string; done: boolean }) {
+async function createTask(data: { name: string; done: number }) {
   const response = await client.tasks.$post({ json: data });
   if (response.status === 200) {
     return await response.json();

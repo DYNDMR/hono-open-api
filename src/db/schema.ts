@@ -6,9 +6,7 @@ export const tasks = sqliteTable("tasks", {
     .primaryKey({ autoIncrement: true }),
   name: text("name")
     .notNull(),
-  done: integer("done", { mode: "boolean" })
-    .notNull()
-    .default(false),
+  done: integer("done").notNull().default(0),
   createdAt: integer("created_at", { mode: "timestamp" })
     .$defaultFn(() => new Date()),
   updatedAt: integer("updated_at", { mode: "timestamp" })
