@@ -4,5 +4,6 @@
       "src": "src/index.ts",
       "use": "@vercel/node"
     }
-  ]
+  ],
+  "outputDirectory": "dist"
 }
