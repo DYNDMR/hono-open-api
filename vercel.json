@@ -2,10 +2,17 @@
   "builds": [
     {
       "src": "src/index.ts",
-      "use": "@vercel/node",
-      "config": {
-        "distDir": "dist"
-      }
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "src/index.ts"
+    },
+    {
+      "src": "/tasks",
+      "dest": "src/tasks.ts"
     }
   ]
 }
